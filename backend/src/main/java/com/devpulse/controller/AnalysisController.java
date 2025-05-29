@@ -501,7 +501,12 @@ public class AnalysisController {
         Set<String> uniqueRepos = contributions.stream()
             .filter(event -> "PushEvent".equals(event.get("type")))
             .map(event -> {
-                Map<String, Object> repo = (Map<String, Object>) event.get("repo");
+                Object repoObj = event.get("repo");
+                if (!(repoObj instanceof Map)) {
+                    return null;
+                }
+                @SuppressWarnings("unchecked")
+                Map<String, Object> repo = (Map<String, Object>) repoObj;
                 return repo != null ? (String) repo.get("name") : null;
             })
             .filter(Objects::nonNull)
