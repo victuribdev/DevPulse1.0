@@ -1,0 +1,33 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/devpulse
+    username: SEU_USUARIO
+    password: SUA_SENHA
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+jwt:
+  secret: SUA_JWT_SECRET_KEY
+  expiration: 86400000 # 24 hours in milliseconds
+
+cors:
+  allowed-origins: http://localhost:5173 # Frontend Vite default port
+  allowed-methods: GET,POST,PUT,DELETE,OPTIONS
+  allowed-headers: "*"
+  allow-credentials: true
+
+github:
+  token: SEU_TOKEN_GITHUB
+  username: SEU_USUARIO_GITHUB 
